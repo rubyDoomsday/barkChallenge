@@ -1,0 +1,44 @@
+// app/assets/stylesheets/users.scss
+
+// Form Container
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+// Form Elements
+.simple_form {
+  display: flex;
+  flex-direction: column;
+
+  // Input Fields
+  .input {
+    margin-bottom: 15px;
+
+    input,
+    select,
+    textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+  }
+
+  // Submit Button
+  .actions {
+    margin: 5px;
+  }
+
+  // Error Messages
+  .error {
+    color: #dc3545;
+    margin-top: 5px;
+  }
+}

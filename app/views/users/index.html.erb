@@ -1,2 +1,31 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>All Users</h1>
+
+<div class="nav-container">
+  <%= link_to 'create user', new_user_path, class: 'button' %></td>
+</div>
+
+<div class="table-container">
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to 'show', user_path(id: user.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

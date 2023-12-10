@@ -12,14 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2023_12_10_131115) do
 
-  create_table "users", force: :cascade do |t|
-    t.string "uuid"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
+  create_table "users", id: false, force: :cascade do |t|
+    t.string "id", null: false
+    t.string "first_name", limit: 300
+    t.string "last_name", limit: 300
+    t.string "email", limit: 300
     t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["id"], name: "index_users_on_id", unique: true
   end
 
 end

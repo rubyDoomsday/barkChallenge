@@ -1,0 +1,14 @@
+<div class="form-container">
+  <%= simple_form_for user, url: user_path(id: user.id) do |f| %>
+    <%= f.input :first_name%>
+    <%= f.input :last_name%>
+    <%= f.input :email %>
+    <%= f.input :current_password, label: 'Current password' %>
+    <%= f.input :password, label: 'New Password`' %>
+
+    <div class="actions">
+      <%= f.button :submit, 'Submit', class: 'button submit' %>
+      <%= link_to "Cancel", :back, class: 'button cancel' %>
+    </div>
+  <% end %>
+</div>

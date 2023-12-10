@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  #service/app
+  app:
+    build:
+      context: .
+    environment:
+      DOCKER: "true"
+    command: bash -c "script/server"
+    ports:
+      - "3000:3000"

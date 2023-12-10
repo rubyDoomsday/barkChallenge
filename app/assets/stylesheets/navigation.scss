@@ -1,0 +1,39 @@
+.nav-container {
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  padding: 10px 15px;
+}
+
+.button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.submit {
+  background-color: green;
+  color: #fff;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+.cancel {
+  background-color: red;
+  color: #fff;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
