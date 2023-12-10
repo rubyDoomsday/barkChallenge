@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# generate code documentation
+yardoc
+yard server & open http://localhost:8808
+

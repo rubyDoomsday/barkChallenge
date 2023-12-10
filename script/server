@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# script/server: Launch the application and any extra required processes
+#                locally.
+
+# ensure everything in the app is up to date.
+script/update
+
+test -z "$RAILS_ENV" &&
+  RAILS_ENV='development'
+
+# boot the app and any other necessary processes.
+if [ "$DOCKER" = "true" ]; then
+  echo "starting docker server"
+  rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'
+else
+  echo "starting docker server"
+  rm -f tmp/pids/server.pid && bundle exec rails s -p 3000
+fi
