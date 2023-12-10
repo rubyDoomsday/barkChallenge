@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :require_login, except: %i[new create]
+
   def new
     user = User.new
     render :new, locals: { user: user }
   end
 
   def create
-    user = User.new(user_params.except(:password_confirmation))
+    user = User.new(user_params)
     if user.valid?
       user.save
       redirect_to users_path, notice: "Registration successful!"

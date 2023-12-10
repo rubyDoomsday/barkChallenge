@@ -7,7 +7,7 @@ class User < ApplicationRecord
   before_validation ->(u) { u.id = SecureRandom.uuid if u.id.nil? }, on: :create
 
   # validations
-  validate :secure_password?
+  has_secure_password
 
   validates :id, presence: true, uuid: true
   validates :first_name, presence: true
@@ -16,6 +16,18 @@ class User < ApplicationRecord
                     email: true
 
   private
+
+  def update_password(new_password)
+    if new_password.blank?
+      errors.add(:password, "can't be blank")
+      return
+    end
+
+    self.password = new_password
+    return false unless valid?
+
+    save
+  end
 
   def secure_password?
     if password.blank?

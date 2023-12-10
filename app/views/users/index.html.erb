@@ -2,6 +2,10 @@
 
 <div class="nav-container">
   <%= link_to 'create user', new_user_path, class: 'button' %></td>
+  <% if current_user %>
+    <%= link_to 'Logout', logout_path, class: 'button btn-danger' %>
+  <% end %>
+
 </div>
 
 <div class="table-container">

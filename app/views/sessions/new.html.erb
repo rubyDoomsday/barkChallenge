@@ -1,0 +1,14 @@
+<h2>Login</h2>
+
+<div class="nav-container">
+  <%= link_to 'create user', new_user_path, class: 'button' %></td>
+</div>
+
+<div class="form-container">
+  <%= simple_form_for :session, url: login_path, method: :post do |form| %>
+    <%= form.input :email %>
+    <%= form.input :password %>
+
+    <%= form.button :submit, 'Login', class: "button btn-success" %>
+  <% end %>
+<div class="form-container">

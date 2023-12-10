@@ -21,7 +21,7 @@
   }
 }
 
-.submit {
+.btn-success {
   background-color: green;
   color: #fff;
 
@@ -29,7 +29,17 @@
     background-color: #0056b3;
   }
 }
-.cancel {
+
+.btn-warn{
+  background-color: #FFDB58;
+  color: #fff;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.btn-danger{
   background-color: red;
   color: #fff;
 
