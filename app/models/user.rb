@@ -20,6 +20,9 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitve: false },
                     email: true
 
+  # @attr attr StronParams
+  # @return boolean to conform with Rails update method
+  # @note This method is provided to handle authentication and update via users controller
   def update_attr(attr)
     unless authenticate(attr[:current_password])
       errors.add(:current_password, "invalid password")
