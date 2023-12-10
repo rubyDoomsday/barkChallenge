@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def update
     user = load_user
-    if user.update(edit_user_params)
+    if user.update_attr(edit_user_params)
       render :show, locals: { user: user }, notice: "update complete"
     else
       render :edit, locals: { user: user }, notice: "registration failed"
@@ -53,14 +53,11 @@ class UsersController < ApplicationController
   private
 
   def load_user
-    User.where(id: params[:id]).first
+    User.find_by(id: params[:id])
   end
 
   def edit_user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :current_password, :new_password).tap do |p|
-      p[:password] = p.delete(:new_password)
-      p.delete(:current_password)
-    end
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :current_password)
   end
 
   def user_params

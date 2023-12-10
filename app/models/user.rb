@@ -3,11 +3,16 @@
 class User < ApplicationRecord
   self.primary_key = "id"
 
+  # attributes
+  has_secure_password
+  attr_accessor :current_password
+
   # hooks
   before_validation ->(u) { u.id = SecureRandom.uuid if u.id.nil? }, on: :create
 
   # validations
-  has_secure_password
+
+  validate :secure_password?
 
   validates :id, presence: true, uuid: true
   validates :first_name, presence: true
@@ -15,28 +20,33 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitve: false },
                     email: true
 
-  private
-
-  def update_password(new_password)
-    if new_password.blank?
-      errors.add(:password, "can't be blank")
-      return
+  def update_attr(attr)
+    unless authenticate(attr[:current_password])
+      errors.add(:current_password, "invalid password")
+      return false
     end
 
-    self.password = new_password
-    return false unless valid?
-
-    save
+    attr[:password].present? ? update(attr) : update(attr.tap { |a| a[:password] = a[:current_password] })
   end
 
+  private
+
   def secure_password?
-    if password.blank?
+    return false if blank_password?
+
+    errors.add(:password, "must be at least 12 characters long") unless @password.length >= 12
+    errors.add(:password, "must include at least one capital letter") unless @password.match(/[A-Z]/)
+    errors.add(:password, "must include at least one number") unless @password.match(/\d/)
+  end
+
+  def blank_password?
+    result = false
+
+    if @password.blank?
       errors.add(:password, "can't be blank")
-      return
+      result = true
     end
 
-    errors.add(:password, "must be at least 12 characters long") unless password.length >= 12
-    errors.add(:password, "must include at least one capital letter") unless password.match(/[A-Z]/)
-    errors.add(:password, "must include at least one number") unless password.match(/\d/)
+    result
   end
 end

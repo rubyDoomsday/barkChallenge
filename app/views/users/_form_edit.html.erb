@@ -3,8 +3,8 @@
     <%= f.input :first_name%>
     <%= f.input :last_name%>
     <%= f.input :email %>
-    <%= f.input :password, label: 'Current Password' %>
-    <%= f.input :new_password %>
+    <%= f.input :current_password, label: 'Current Password' %>
+    <%= f.input :password, label: "New Password" %>
 
     <div class="actions">
       <%= f.button :submit, 'Submit', class: 'button btn-success' %>
